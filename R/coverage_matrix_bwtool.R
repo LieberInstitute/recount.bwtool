@@ -53,7 +53,7 @@
 #' @importFrom utils read.table
 #' @importFrom methods is
 #' @import GenomicRanges RCurl BiocParallel rtracklayer recount 
-#' SummarizedExperiment
+#' SummarizedExperiment S4Vectors
 #'
 #' @seealso \link[recount]{coverage_matrix}, \link[recount]{download_study},
 #' \link[derfinder]{findRegions}, \link[derfinder]{railMatrix}
