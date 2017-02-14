@@ -1,0 +1,35 @@
+Package: recount.bwtool
+Title: Compute coverage matrices from recount quickly using bwtool
+Version: 0.99.0
+Date: 2017-02-14
+Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"),
+    email = "leo.collado@libd.org"))
+Depends:
+    R (>= 3.3.0),
+    recount (>= 1.0.10),
+    SummarizedExperiment
+Imports:
+    BiocParallel,
+    GenomicRanges,
+    methods,
+    RCurl,
+    rtracklayer (>= 1.35.3),
+    utils
+Suggests:
+    testthat
+SystemRequirements: bwtool
+Description: Compute coverage matrices from recount
+    https://jhubiostatistics.shinyapps.io/recount/ using bwtool.
+    This makes it easy to explore regions beyond the genes and exons that are
+    available in recount. For example, it can be used for
+    annotation-agnostic differential expression analyses with the data from the
+    recount project as described at
+    http://biorxiv.org/content/early/2016/08/08/068478.
+License: Artistic-2.0
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/LieberInstitute/recount.bwtool
+BugReports: https://github.com/LieberInstitute/recount.bwtool/issues
+biocViews: Coverage, DifferentialExpression, GeneExpression, RNASeq, Sequencing,
+    Software, DataImport
+RoxygenNote: 6.0.1
