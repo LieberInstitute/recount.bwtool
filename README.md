@@ -14,10 +14,10 @@ Get R 3.3.x from [CRAN](http://cran.r-project.org/). Also install [bwtool](https
 ```R
 ## Install the dependencies from Bioconductor
 source('http://bioconductor.org/biocLite.R')
-biocLite(c('recount', 'devtools'))
+biocLite(c('recount'))
 
 ## Then install recount.bwtool
-devtools::install_github('LieberInstitute/recount.bwtool')
+biocLite('LieberInstitute/recount.bwtool')
 ```
 
 # Citation
