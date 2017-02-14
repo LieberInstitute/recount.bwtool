@@ -75,7 +75,6 @@ if(FALSE) {
     ## Reading BigWig files is not supported by rtracklayer on Windows
     ## (only needed for defining the regions in this example)
     ## Define expressed regions for study DRP002835, chrY
-    library('recount')
     regions <- expressed_regions('DRP002835', 'chrY', cutoff = 5L, 
         maxClusterGap = 3000L)
 
@@ -83,7 +82,7 @@ if(FALSE) {
     rse <- coverage_matrix_bwtool('DRP002835', regions)
 
     ## Scale counts
-    rse_scaled <- scale_counts(rse)
+    rse_scaled <- scale_counts(rse, round = FALSE)
 }
 }
 
