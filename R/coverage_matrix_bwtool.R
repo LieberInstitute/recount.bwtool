@@ -75,7 +75,7 @@
 #'     rse <- coverage_matrix_bwtool('DRP002835', regions)
 #'
 #'     ## Scale counts
-#'     rse_scaled <- scale_counts(rse)
+#'     rse_scaled <- scale_counts(rse, round = FALSE)
 #' }
 #' }
 #'
