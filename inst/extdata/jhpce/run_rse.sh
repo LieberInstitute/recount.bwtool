@@ -170,7 +170,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #$ -m ${EMAIL}
 #$ -o ${MAINDIR}/logs/${SHORT}.txt
 #$ -e ${MAINDIR}/logs/${SHORT}.txt
-#$ -hold_jid recount-bwtool-single,recount-bwtool-large
+#$ -hold_jid recount-bwtool-single.${RIGHTNOW},recount-bwtool-large.${RIGHTNOW}
 echo "**** Job starts ****"
 date
 
