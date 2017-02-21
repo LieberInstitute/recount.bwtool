@@ -34,10 +34,11 @@ while true; do
                 "") CORES="1" ; shift 2;;
                 *) CORES=$2; shift 2;;
             esac ;;
-        case "$2" in
-            "") BED="" ; shift 2;;
-            *) BED=$2; shift 2;;
-        esac ;;
+        -b|--bed)
+            case "$2" in
+                "") BED="" ; shift 2;;
+                *) BED=$2; shift 2;;
+            esac ;;
         -h|--help)
             echo -e "Usage:\nShort options:\n  bash run_rse.sh -r -s -c (default:1) -b (optional) \nLong options:\n  bash run_rse.sh --regions --sumsdir --cores (default:1) --bed (optional)"; exit 0; shift ;;
             --) shift; break ;;
