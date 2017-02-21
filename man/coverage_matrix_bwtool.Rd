@@ -72,6 +72,10 @@ project and/or are thinking of using different sets of \code{regions} (for
 example, from different cutoffs applied to \link{expressed_regions}).
 If you are working at JHPCE (and part of \code{leekgroup}) or at SciServer,
 the files will be located automatically.
+
+Check also \code{system.file('extdata', 'jhpce', package = 'recount.bwtool')}
+for some scripts that will run this function for all the projects we have
+available at JHPCE.
 }
 \examples{
 

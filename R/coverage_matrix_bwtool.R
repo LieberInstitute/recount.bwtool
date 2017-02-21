@@ -64,6 +64,11 @@
 #' @seealso \link[recount]{coverage_matrix}, \link[recount]{download_study},
 #' \link[derfinder]{findRegions}, \link[derfinder]{railMatrix}
 #'
+#' @details
+#' Check also \code{system.file('extdata', 'jhpce', package = 'recount.bwtool')}
+#' for some scripts that will run this function for all the projects we have
+#' available at JHPCE.
+#'
 #' @examples
 #'
 #' if(.Platform$OS.type != 'windows') {
@@ -105,14 +110,11 @@ coverage_matrix_bwtool <- function(project, regions,
     stopifnot(nrow(url_table) > 0)
     
     ## Export regions to a BED file if necessary
-    if(!is.null(bed)) {
-        createBed <- !file.exists(bed)
-    } else {
+    if(is.null(bed)) {
         bed <- file.path(sumsdir, paste0('recount.bwtool-', Sys.Date(), '.bed'))
-        createBed <- TRUE
     }
     
-    if(createBed) {
+    if(!file.exists(bed)) {
         if (verbose) message(paste(Sys.time(), 'creating the BED file', bed))
         rtracklayer::export(regions, con = bed, format='BED')
         stopifnot(file.exists(bed))

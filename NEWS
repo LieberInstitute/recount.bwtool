@@ -1,3 +1,13 @@
+CHANGES IN VERSION 0.99.2
+-------------------------
+
+NEW FEATURES
+
+    o Added scripts for running coverage_matrix_bwtool() on all projects we have
+        available at JHPCE. See the updated manual page of
+        coverage_matrix_bwtool().
+
+
 CHANGES IN VERSION 0.99.1
 -------------------------
 
