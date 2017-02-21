@@ -31,6 +31,12 @@
 #' for making sure that the BED file and the regions are in the same order.
 #' Could be useful for a scenario where you have a BED file and import it to
 #' define \code{regions}.
+#' @param url_table A custom data.frame named with the same columns as
+#' \code{recount::recount_url}. If \code{NULL}, the default is 
+#' \code{recount::recount_url}.
+#' Note that project SRP012682 is only available at JHPCE. Use \code{local_url}
+#' saved in \code{/dcl01/leek/data/recount-website/fileinfo/local_url.RData}.
+#' 
 #' @param ... Additional arguments passed to \link{download_study} when
 #' \code{outdir} is specified but the required files are missing.
 #' 
@@ -82,13 +88,17 @@
 coverage_matrix_bwtool <- function(project, regions,
     bwtool = '/dcl01/leek/data/bwtool/bwtool-1.0/bwtool',
     bpparam = NULL, outdir = NULL, verbose = TRUE, sumsdir = tempdir(),
-    bed = NULL, ...) {    
+    bed = NULL, url_table = NULL, ...) {    
     ## Check inputs
     stopifnot(is.character(project) & length(project) == 1)
     stopifnot(is(regions, 'GRanges'))
     
     ## Use table from the recount package
-    url_table <- recount::recount_url
+    if(is.null(url_table)) {
+        url_table <- recount::recount_url
+    } else {
+        stopifnot(all(colnames(recount::recount_url) %in% colnames(url_table)))
+    }
     
     ## Subset url data
     url_table <- url_table[url_table$project == project, ]
@@ -124,6 +134,7 @@ coverage_matrix_bwtool <- function(project, regions,
         phenoFile <- url_table$path[url_table$file_name == paste0(project,
             '.tsv')]
     } else if (sciserver) {
+        if(project == 'SRP012682') stop("The BigWig files for project SRP012682 are not on SciServer.")
         sampleFiles <- gsub('http://duffel.rail.bio/recount/',
             '/home/idies/workspace/recount01/', url_table$url[samples_i])
         phenoFile <- gsub('http://duffel.rail.bio/recount/',
@@ -136,6 +147,7 @@ coverage_matrix_bwtool <- function(project, regions,
             file.path(outdir, 'bw', url_table$file_name[i])
         })
         if(any(!file.exists(sampleFiles))) {
+            if(project == 'SRP012682') stop("The BigWig files for project SRP012682 are not publicly available.")
             download_study(project = project, type = 'samples', outdir = outdir,
                 download = TRUE, ...)
         }

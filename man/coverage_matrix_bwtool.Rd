@@ -8,7 +8,8 @@ given SRA study using \code{bwtool} as a
 \usage{
 coverage_matrix_bwtool(project, regions,
   bwtool = "/dcl01/leek/data/bwtool/bwtool-1.0/bwtool", bpparam = NULL,
-  outdir = NULL, verbose = TRUE, sumsdir = tempdir(), bed = NULL, ...)
+  outdir = NULL, verbose = TRUE, sumsdir = tempdir(), bed = NULL,
+  url_table = NULL, ...)
 }
 \arguments{
 \item{project}{A character vector with one SRA study id.}
@@ -41,6 +42,12 @@ sum tsv files will be saved.}
 for making sure that the BED file and the regions are in the same order.
 Could be useful for a scenario where you have a BED file and import it to
 define \code{regions}.}
+
+\item{url_table}{A custom data.frame named with the same columns as
+\code{recount::recount_url}. If \code{NULL}, the default is 
+\code{recount::recount_url}.
+Note that project SRP012682 is only available at JHPCE. Use \code{local_url}
+saved in \code{/dcl01/leek/data/recount-website/fileinfo/local_url.RData}.}
 
 \item{...}{Additional arguments passed to \link{download_study} when
 \code{outdir} is specified but the required files are missing.}

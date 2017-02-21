@@ -1,3 +1,13 @@
+CHANGES IN VERSION 0.99.1
+-------------------------
+
+SIGNIFICANT USER VISIBLE CHANGES
+
+    o coverage_matrix_bwtool() now allows has an argument called
+        `url_table` which allows specifying a custom table with paths to
+        files.
+
+
 CHANGES IN VERSION 0.99.0
 -------------------------
 
