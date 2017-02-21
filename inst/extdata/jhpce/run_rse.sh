@@ -95,7 +95,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
 #$ -cwd
 #$ -pe local ${CORES}
-#$ -l ${SGEQUEUE}mem_free=10G,h_vmem=12G,h_fsize=100G
+#$ -l ${SGEQUEUE}mem_free=50G,h_vmem=60G,h_fsize=100G
 #$ -N ${sname}
 #$ -o ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
@@ -131,7 +131,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
 #$ -cwd
 #$ -pe local ${CORES}
-#$ -l ${SGEQUEUE}mem_free=50G,h_vmem=55G,h_fsize=100G
+#$ -l ${SGEQUEUE}mem_free=150G,h_vmem=170G,h_fsize=100G
 #$ -N ${sname}
 #$ -o ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
@@ -165,7 +165,7 @@ echo "Creating script ${sname}"
 cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
 #$ -cwd
-#$ -l ${SGEQUEUE}mem_free=100G,h_vmem=120G,h_fsize=100G
+#$ -l ${SGEQUEUE}mem_free=150G,h_vmem=170G,h_fsize=100G
 #$ -N ${sname}
 #$ -m ${EMAIL}
 #$ -o ${MAINDIR}/logs/${SHORT}.txt
