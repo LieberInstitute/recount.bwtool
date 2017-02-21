@@ -11,7 +11,7 @@
 # Do not use "shared"
 
 # Define variables
-TEMP=$(getopt -o r:s:c:b:h --long regions:,sumsdir:,cores:,bed:,help -n 'step7-makeRobjects' -- "$@")
+TEMP=$(getopt -o r:s:c:b:h --long regions:,sumsdir:,cores:,bed:,help -n 'run_rse' -- "$@")
 eval set -- "$TEMP"
 
 BED=""
