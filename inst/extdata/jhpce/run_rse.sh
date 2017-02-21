@@ -95,7 +95,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
 #$ -cwd
 #$ -pe local ${CORES}
-#$ -l ${SGEQUEUE}mem_free=2G,h_vmem=3G,h_fsize=100G
+#$ -l ${SGEQUEUE}mem_free=10G,h_vmem=12G,h_fsize=100G
 #$ -N ${sname}
 #$ -o ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
@@ -131,7 +131,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
 #$ -cwd
 #$ -pe local ${CORES}
-#$ -l ${SGEQUEUE}mem_free=4G,h_vmem=5G,h_fsize=100G
+#$ -l ${SGEQUEUE}mem_free=50G,h_vmem=55G,h_fsize=100G
 #$ -N ${sname}
 #$ -o ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
