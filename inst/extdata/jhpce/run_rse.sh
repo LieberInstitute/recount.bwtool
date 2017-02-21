@@ -2,7 +2,7 @@
 
 ## Usage information:
 # qrsh
-# bash run_single_rse.sh --help
+# bash run_rse.sh --help
 #
 ## Optional config:
 # .send_emails: if this file exist, "-m e" will be used instead of "-m a"
@@ -39,7 +39,7 @@ while true; do
             *) BED=$2; shift 2;;
         esac ;;
         -h|--help)
-            echo -e "Usage:\nShort options:\n  bash run_single_rse.sh -r -s -c (default:1) -b (optional) \nLong options:\n  bash run_single_rse.sh --regions --sumsdir --cores (default:1) --bed (optional)"; exit 0; shift ;;
+            echo -e "Usage:\nShort options:\n  bash run_rse.sh -r -s -c (default:1) -b (optional) \nLong options:\n  bash run_rse.sh --regions --sumsdir --cores (default:1) --bed (optional)"; exit 0; shift ;;
             --) shift; break ;;
         *) echo "Incorrect options!"; exit 1;;
     esac
