@@ -112,7 +112,7 @@ echo "Job name: \${JOB_NAME}"
 echo "Hostname: \${HOSTNAME}"
 echo "Task id: \${SGE_TASK_ID}"
 
-Rscript ${SCRIPTPATH}/single_rse.R -p \${TASK_ID} -r ${REGIONS} -s ${SUMSDIR} -c ${CORES} -b ${BED}
+Rscript ${SCRIPTPATH}/single_rse.R -p "\${SGE_TASK_ID}" -r "${REGIONS}" -s "${SUMSDIR}" -c "${CORES}" -b "${BED}"
 
 echo "**** Job ends ****"
 date
@@ -148,7 +148,7 @@ echo "Job name: \${JOB_NAME}"
 echo "Hostname: \${HOSTNAME}"
 echo "Task id: \${SGE_TASK_ID}"
 
-Rscript ${SCRIPTPATH}/single_rse.R -p \${SGE_TASK_ID} -r ${REGIONS} -s ${SUMSDIR} -c ${CORES} ${BEDARG}
+Rscript ${SCRIPTPATH}/single_rse.R -p "\${SGE_TASK_ID}" -r "${REGIONS}" -s "${SUMSDIR}" -c "${CORES}" -b "${BED}"
 
 echo "**** Job ends ****"
 date
