@@ -110,7 +110,7 @@ echo "User: \${USER}"
 echo "Job id: \${JOB_ID}"
 echo "Job name: \${JOB_NAME}"
 echo "Hostname: \${HOSTNAME}"
-echo "Task id: \${TASK_ID}"
+echo "Task id: \${SGE_TASK_ID}"
 
 Rscript ${SCRIPTPATH}/single_rse.R -p \${TASK_ID} -r ${REGIONS} -s ${SUMSDIR} -c ${CORES} -b ${BED}
 
@@ -146,9 +146,9 @@ echo "User: \${USER}"
 echo "Job id: \${JOB_ID}"
 echo "Job name: \${JOB_NAME}"
 echo "Hostname: \${HOSTNAME}"
-echo "Task id: \${TASK_ID}"
+echo "Task id: \${SGE_TASK_ID}"
 
-Rscript ${SCRIPTPATH}/single_rse.R -p \${TASK_ID} -r ${REGIONS} -s ${SUMSDIR} -c ${CORES} ${BEDARG}
+Rscript ${SCRIPTPATH}/single_rse.R -p \${SGE_TASK_ID} -r ${REGIONS} -s ${SUMSDIR} -c ${CORES} ${BEDARG}
 
 echo "**** Job ends ****"
 date
@@ -170,6 +170,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #$ -m ${EMAIL}
 #$ -o ${MAINDIR}/logs/${SHORT}.txt
 #$ -e ${MAINDIR}/logs/${SHORT}.txt
+#$ -hold_jid recount-bwtool-single,recount-bwtool-large
 echo "**** Job starts ****"
 date
 
