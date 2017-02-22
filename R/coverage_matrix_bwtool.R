@@ -189,6 +189,10 @@ coverage_matrix_bwtool <- function(project, regions,
     ## Group results from all files
     counts <- do.call(cbind, counts)
     
+    ## Match the pheno with the samples
+    map <- match(paste0(names(sampleFiles), '.bw'), pheno$bigwig_file)
+    pheno <- pheno[map, ]
+    
     ## Build a RSE object
     rse <- SummarizedExperiment(assays = list('counts' = counts),
             colData = DataFrame(pheno), rowRanges = regions)
@@ -207,5 +211,6 @@ coverage_matrix_bwtool <- function(project, regions,
     res <- read.table(output, header = FALSE,
         colClasses = list(NULL, NULL, NULL, 'numeric'))
     colnames(res) <- sample
+    print(dim(res))
     return(as.matrix(res))
 }

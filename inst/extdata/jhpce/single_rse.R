@@ -1,5 +1,5 @@
 ## Required libraries
-stopifnot(packageVersion('recount.bwtool') >= '0.99.2')
+stopifnot(packageVersion('recount.bwtool') >= '0.99.4')
 library('recount.bwtool')
 library('BiocParallel')
 library('devtools')
@@ -21,6 +21,11 @@ opt <- getopt(spec)
 if (!is.null(opt$help)) {
 	cat(getopt(spec, usage=TRUE))
 	q(status=1)
+}
+
+if(FALSE) {
+    ## For testing
+    opt <- list(projectid = 9, regions = '/dcl01/lieber/ajaffe/lab/insp/IGH/IGH.Rdata', sumsdir = '/users/lcollado/rb-test', cores = 1, bed = '/dcl01/lieber/ajaffe/lab/insp/IGH/sumsIGH/recount.bwtool-2017-02-21.bed')
 }
 
 ## Load the custom url table and project names
