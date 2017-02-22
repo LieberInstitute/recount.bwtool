@@ -11,7 +11,14 @@ files_load <- function(f) {
 files_main <- function() {
     message(paste(Sys.time(), 'locating files'))
     rse_files <- dir(pattern = 'rse_', full.names = TRUE)
-    rse_files <- rse_files[-grep('TCGA|SRP012682', rse_files)]
+    
+    ## Exclude GTEx and TCGA if present
+    if(grepl('TCGA', rse_files)) {
+        rse_files <- rse_files[-grep('TCGA', rse_files)]
+    }
+    if(grepl('SRP012682', rse_files)) {
+        rse_files <- rse_files[-grep('SRP012682', rse_files)]
+    }
     
     ## Split files into groups of ~20
     rse_files_list <- split(rse_files, cut2(seq_len(length(rse_files)), m = 20))
