@@ -13,10 +13,10 @@ files_main <- function() {
     rse_files <- dir(pattern = 'rse_', full.names = TRUE)
     
     ## Exclude GTEx and TCGA if present
-    if(grepl('TCGA', rse_files)) {
+    if(any(grepl('TCGA', rse_files))) {
         rse_files <- rse_files[-grep('TCGA', rse_files)]
     }
-    if(grepl('SRP012682', rse_files)) {
+    if(any(grepl('SRP012682', rse_files))) {
         rse_files <- rse_files[-grep('SRP012682', rse_files)]
     }
     
