@@ -95,13 +95,13 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
 #$ -cwd
 #$ -pe local ${CORES}
-#$ -l ${SGEQUEUE}mem_free=50G,h_vmem=60G,h_fsize=100G
+#$ -l ${SGEQUEUE}mem_free=40G,h_vmem=50G,h_fsize=100G
 #$ -N ${sname}
 #$ -o ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -m ${EMAIL}
 #$ -t 1-2034
-#$ -tc 100
+#$ -tc 20
 echo "**** Job starts ****"
 date
 
@@ -137,7 +137,6 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -m ${EMAIL}
 #$ -t 2035-2036
-#$ -tc 2
 echo "**** Job starts ****"
 date
 
