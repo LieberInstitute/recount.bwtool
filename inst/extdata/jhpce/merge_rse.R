@@ -11,6 +11,7 @@ files_load <- function(f) {
 files_main <- function() {
     message(paste(Sys.time(), 'locating files'))
     rse_files <- dir(pattern = 'rse_', full.names = TRUE)
+    rse_files <- rse_files[-grep('TCGA|SRP012682', rse_files)]
     
     ## Split files into groups of ~20
     rse_files_list <- split(rse_files, cut2(seq_len(length(rse_files)), m = 20))
@@ -84,8 +85,8 @@ files_main <- function() {
 
     
     ## Save results
-    message(paste(Sys.time(), 'saving the final rse object'))
-    save(rse, file = 'rse.Rdata')
+    message(paste(Sys.time(), 'saving the final rse_sra object'))
+    save(rse, file = 'rse_sra.Rdata')
     return('rse.Rdata')
 }
 
