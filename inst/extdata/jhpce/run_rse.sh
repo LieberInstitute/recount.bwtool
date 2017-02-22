@@ -164,12 +164,12 @@ echo "Creating script ${sname}"
 cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
 #$ -cwd
-#$ -l ${SGEQUEUE}mem_free=150G,h_vmem=170G,h_fsize=100G
+#$ -l ${SGEQUEUE}mem_free=50G,h_vmem=60G,h_fsize=100G
 #$ -N ${sname}
 #$ -m ${EMAIL}
 #$ -o ${MAINDIR}/logs/${SHORT}.txt
 #$ -e ${MAINDIR}/logs/${SHORT}.txt
-#$ -hold_jid recount-bwtool-single.${RIGHTNOW},recount-bwtool-large.${RIGHTNOW}
+#$ -hold_jid recount-bwtool-single.${RIGHTNOW}
 echo "**** Job starts ****"
 date
 
