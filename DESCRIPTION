@@ -1,12 +1,12 @@
 Package: recount.bwtool
 Title: Compute coverage matrices from recount quickly using bwtool
-Version: 0.99.4
+Version: 0.99.5
 Date: 2017-02-22
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"),
     email = "leo.collado@libd.org"))
 Depends:
     R (>= 3.3.0),
-    recount (>= 1.0.10),
+    recount (>= 1.0.12),
     SummarizedExperiment
 Imports:
     BiocParallel,

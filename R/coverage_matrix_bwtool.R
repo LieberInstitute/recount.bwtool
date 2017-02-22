@@ -211,6 +211,5 @@ coverage_matrix_bwtool <- function(project, regions,
     res <- read.table(output, header = FALSE,
         colClasses = list(NULL, NULL, NULL, 'numeric'))
     colnames(res) <- sample
-    print(dim(res))
     return(as.matrix(res))
 }

@@ -25,7 +25,7 @@ if (!is.null(opt$help)) {
 
 if(FALSE) {
     ## For testing
-    opt <- list(projectid = 9, regions = '/dcl01/lieber/ajaffe/lab/insp/IGH/IGH.Rdata', sumsdir = '/users/lcollado/rb-test', cores = 1, bed = '/dcl01/lieber/ajaffe/lab/insp/IGH/sumsIGH/recount.bwtool-2017-02-21.bed')
+    opt <- list(projectid = 290, regions = '/dcl01/lieber/ajaffe/lab/insp/IGH/IGH.Rdata', sumsdir = '/users/lcollado/rb-test', cores = 1, bed = '/dcl01/lieber/ajaffe/lab/insp/IGH/sumsIGH/recount.bwtool-2017-02-21.bed')
 }
 
 ## Load the custom url table and project names
@@ -49,6 +49,17 @@ if(opt$cores == 1) {
     bp <- SerialParam()
 } else {
     bp <- MulticoreParam(cores = opt$cores, outfile = Sys.getenv('SGE_STDERR_PATH'))
+}
+
+if(FALSE) {
+    ## For testing
+    bwtool = '/dcl01/leek/data/bwtool/bwtool-1.0/bwtool'
+    bpparam = bp
+    outdir = NULL
+    verbose = TRUE
+    sumsdir = opt$sumsdir
+    bed = opt$bed
+    url_table = local_url
 }
 
 ## Obtain rse file for the given project
