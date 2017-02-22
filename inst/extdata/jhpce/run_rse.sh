@@ -180,7 +180,7 @@ echo "Job id: \${JOB_ID}"
 echo "Job name: \${JOB_NAME}"
 echo "Hostname: \${HOSTNAME}"
 
-Rscript ${SCRIPTPATH}/merge_sre.R
+Rscript ${SCRIPTPATH}/merge_rse.R
 
 echo "**** Job ends ****"
 date
