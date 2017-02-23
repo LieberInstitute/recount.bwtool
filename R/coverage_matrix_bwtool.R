@@ -190,7 +190,11 @@ coverage_matrix_bwtool <- function(project, regions,
     counts <- do.call(cbind, counts)
     
     ## Match the pheno with the samples
-    map <- match(paste0(names(sampleFiles), '.bw'), pheno$bigwig_file)
+    if (project == 'TCGA') {
+        map <- match(names(sampleFiles), pheno$gdc_file_id)
+    } else {
+        map <- match(names(sampleFiles), pheno$run)
+    }
     pheno <- pheno[map, ]
     
     ## Build a RSE object
