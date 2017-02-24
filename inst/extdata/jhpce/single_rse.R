@@ -1,5 +1,5 @@
 ## Required libraries
-stopifnot(packageVersion('recount.bwtool') >= '0.99.6')
+stopifnot(packageVersion('recount.bwtool') >= '0.99.10')
 library('recount.bwtool')
 library('BiocParallel')
 library('devtools')

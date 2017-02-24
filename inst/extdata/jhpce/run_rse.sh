@@ -99,6 +99,7 @@ then
 fi
 
 ## Create the recount-bwtool-commands.txt file
+
 echo "Creating script ${sname}"
 cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
@@ -130,7 +131,9 @@ call="qsub .${sname}.sh"
 echo $call
 $call
 
-## Now run the commands
+## Merge the bwtool commands into a single file
+## so then we can run then in a single array job
+
 SHORT="recount-bwtool-commandmerge"
 sname="${SHORT}.${RIGHTNOW}"
 echo "Creating script ${sname}"
@@ -156,6 +159,20 @@ echo "Task id: \${SGE_TASK_ID}"
 ## Merge command files
 cat ${MAINDIR}/recount-bwtool-commands_*.txt > ${MAINDIR}/recount-bwtool-commands.txt
 
+echo "**** Final number of commands ****"
+wc -l ${MAINDIR}/recount-bwtool-commands.txt
+
+## Check result is as expected
+NLINES=\$(wc -l ${MAINDIR}/recount-bwtool-commands.txt | cut -f 1 -d " ")
+if [[ "\${NLINES}" -ne "70603" ]]
+then
+    echo "Incorrect number of lines. Was expecting 70603 not \${NLINES}."
+    exit 1
+fi
+
+## Clean up
+rm ${MAINDIR}/recount-bwtool-commands_*.txt 
+
 echo "**** Job ends ****"
 date
 EOF
@@ -164,7 +181,8 @@ call="qsub .${sname}.sh"
 echo $call
 $call
 
-## Now run the commands
+## Now run the bwtool commands
+
 SHORT="recount-bwtool-run"
 sname="${SHORT}.${RIGHTNOW}"
 echo "Creating script ${sname}"
@@ -201,9 +219,10 @@ EOF
 
 call="qsub .${sname}.sh"
 echo $call
-#$call
+$call
 
-## Now create the RSE objects
+## Now create the RSE objects for the SRA studies
+
 SHORT="recount-bwtool-single"
 sname="${SHORT}.${RIGHTNOW}"
 echo "Creating script ${sname}"
@@ -237,7 +256,7 @@ EOF
 
 call="qsub .${sname}.sh"
 echo $call
-#$call
+$call
 
 
 ## Similar script but with more memory for GTEx and TCGA
@@ -273,8 +292,10 @@ EOF
 
 call="qsub .${sname}.sh"
 echo $call
-#$call
+$call
 
+
+## Merge the RSE objects for SRA
 
 SHORT="recount-bwtool-merge"
 sname="${SHORT}.${RIGHTNOW}"
@@ -305,4 +326,4 @@ EOF
 
 call="qsub .${sname}.sh"
 echo $call
-#$call
+$call
