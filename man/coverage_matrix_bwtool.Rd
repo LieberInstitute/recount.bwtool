@@ -9,7 +9,7 @@ given SRA study using \code{bwtool} as a
 coverage_matrix_bwtool(project, regions,
   bwtool = "/dcl01/leek/data/bwtool/bwtool-1.0/bwtool", bpparam = NULL,
   outdir = NULL, verbose = TRUE, sumsdir = tempdir(), bed = NULL,
-  url_table = NULL, ...)
+  url_table = NULL, commands_only = FALSE, ...)
 }
 \arguments{
 \item{project}{A character vector with one SRA study id.}
@@ -48,6 +48,13 @@ define \code{regions}.}
 \code{recount::recount_url}.
 Note that project SRP012682 is only available at JHPCE. Use \code{local_url}
 saved in \code{/dcl01/leek/data/recount-website/fileinfo/local_url.RData}.}
+
+\item{commands_only}{If \code{TRUE} the bwtool commands will be saved in a
+file called recount-bwtool-commands.txt and exit without running
+\code{bwtool}. This is useful if you have a very large regions set and want
+to run the commands in an array job. Then run
+\code{coverage_matrix_bwtool(commands_only = FALSE)} to create the RSE
+object(s).}
 
 \item{...}{Additional arguments passed to \link{download_study} when
 \code{outdir} is specified but the required files are missing.}

@@ -57,7 +57,7 @@ then
 fi
 rm .try_load_R
 
-SHORT="recount-bwtool-single"
+SHORT="recount-bwtool-commands"
 RIGHTNOW=$(date "+%Y-%m-%d")
 sname="${SHORT}.${RIGHTNOW}"
 MAINDIR=${PWD}
@@ -90,6 +90,81 @@ SCRIPTPATH=$(cat .recount.bwtool)
 mkdir -p logs
 
 # Construct shell files
+
+## Create the recount-bwtool-commands.txt file
+echo "Creating script ${sname}"
+cat > ${MAINDIR}/.${sname}.sh <<EOF
+#!/bin/bash
+#$ -cwd
+#$ -l ${SGEQUEUE}mem_free=1G,h_vmem=2G,h_fsize=100G
+#$ -N ${sname}
+#$ -o ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
+#$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
+#$ -m ${EMAIL}
+#$ -t 1-2036
+#$ -tc 100
+echo "**** Job starts ****"
+date
+
+echo "**** JHPCE info ****"
+echo "User: \${USER}"
+echo "Job id: \${JOB_ID}"
+echo "Job name: \${JOB_NAME}"
+echo "Hostname: \${HOSTNAME}"
+echo "Task id: \${SGE_TASK_ID}"
+
+Rscript ${SCRIPTPATH}/single_rse.R -p "\${SGE_TASK_ID}" -r "${REGIONS}" -s "${SUMSDIR}" -c "1" -b "${BED}" -o "TRUE"
+
+echo "**** Job ends ****"
+date
+EOF
+
+call="qsub .${sname}.sh"
+echo $call
+$call
+
+## Now run the commands
+SHORT="recount-bwtool-run"
+sname="${SHORT}.${RIGHTNOW}"
+echo "Creating script ${sname}"
+cat > ${MAINDIR}/.${sname}.sh <<EOF
+#!/bin/bash
+#$ -cwd
+#$ -l ${SGEQUEUE}mem_free=1G,h_vmem=2G,h_fsize=100G
+#$ -N ${sname}
+#$ -o ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
+#$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
+#$ -m ${EMAIL}
+#$ -t 1-70603
+#$ -tc 199
+#$ -hold_jid recount-bwtool-commands.${RIGHTNOW}
+echo "**** Job starts ****"
+date
+
+echo "**** JHPCE info ****"
+echo "User: \${USER}"
+echo "Job id: \${JOB_ID}"
+echo "Job name: \${JOB_NAME}"
+echo "Hostname: \${HOSTNAME}"
+echo "Task id: \${SGE_TASK_ID}"
+
+bwtoolcmd=\$(awk "NR==\${SGE_TASK_ID}" ${MAINDIR}/recount-bwtool-commands.txt)
+
+## Run bwtool
+echo "\${bwtoolcmd}"
+\${bwtoolcmd}
+
+echo "**** Job ends ****"
+date
+EOF
+
+call="qsub .${sname}.sh"
+echo $call
+#$call
+
+## Now create the RSE objects
+SHORT="recount-bwtool-single"
+sname="${SHORT}.${RIGHTNOW}"
 echo "Creating script ${sname}"
 cat > ${MAINDIR}/.${sname}.sh <<EOF
 #!/bin/bash
@@ -102,6 +177,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #$ -m ${EMAIL}
 #$ -t 1-2034
 #$ -tc 100
+#$ -hold_jid recount-bwtool-run.${RIGHTNOW}
 echo "**** Job starts ****"
 date
 
@@ -120,7 +196,7 @@ EOF
 
 call="qsub .${sname}.sh"
 echo $call
-$call
+#$call
 
 
 ## Similar script but with more memory for GTEx and TCGA
@@ -137,6 +213,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -m ${EMAIL}
 #$ -t 2035-2036
+#$ -hold_jid recount-bwtool-run.${RIGHTNOW}
 echo "**** Job starts ****"
 date
 
@@ -155,7 +232,7 @@ EOF
 
 call="qsub .${sname}.sh"
 echo $call
-$call
+#$call
 
 
 SHORT="recount-bwtool-merge"
@@ -187,5 +264,4 @@ EOF
 
 call="qsub .${sname}.sh"
 echo $call
-$call
-
+#$call

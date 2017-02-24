@@ -36,7 +36,12 @@
 #' \code{recount::recount_url}.
 #' Note that project SRP012682 is only available at JHPCE. Use \code{local_url}
 #' saved in \code{/dcl01/leek/data/recount-website/fileinfo/local_url.RData}.
-#' 
+#' @param commands_only If \code{TRUE} the bwtool commands will be saved in a
+#' file called recount-bwtool-commands.txt and exit without running
+#' \code{bwtool}. This is useful if you have a very large regions set and want
+#' to run the commands in an array job. Then run
+#' \code{coverage_matrix_bwtool(commands_only = FALSE)} to create the RSE
+#' object(s).
 #' @param ... Additional arguments passed to \link{download_study} when
 #' \code{outdir} is specified but the required files are missing.
 #' 
@@ -94,7 +99,7 @@
 coverage_matrix_bwtool <- function(project, regions,
     bwtool = '/dcl01/leek/data/bwtool/bwtool-1.0/bwtool',
     bpparam = NULL, outdir = NULL, verbose = TRUE, sumsdir = tempdir(),
-    bed = NULL, url_table = NULL, ...) {    
+    bed = NULL, url_table = NULL, commands_only = FALSE, ...) {    
     ## Check inputs
     stopifnot(is.character(project) & length(project) == 1)
     stopifnot(is(regions, 'GRanges'))
@@ -187,7 +192,9 @@ coverage_matrix_bwtool <- function(project, regions,
     ## Run bwtool and load the data
     counts <- bpmapply(.run_bwtool, sampleFiles, names(sampleFiles),
         MoreArgs = list('bwtool' = bwtool, 'bed' = bed, 'sumsdir' = sumsdir,
-        'verbose' = verbose), SIMPLIFY = FALSE, BPPARAM = bpparam)
+        'verbose' = verbose, 'commands_only' = commands_only),
+        SIMPLIFY = FALSE, BPPARAM = bpparam)
+    if(commands_only) return(invisible(NULL))
     
     ## Group results from all files
     counts <- do.call(cbind, counts)
@@ -200,10 +207,17 @@ coverage_matrix_bwtool <- function(project, regions,
     return(rse)
 }
 
-.run_bwtool <- function(bigwig, sample, bwtool, bed, sumsdir, verbose) {
+.run_bwtool <- function(bigwig, sample, bwtool, bed, sumsdir, verbose,
+    commands_only) {
     if(verbose) message(paste(Sys.time(), 'processing sample', sample))
     output <- file.path(sumsdir, paste0(sample, '.sum.tsv'))
     cmd <- paste(bwtool, 'summary', bed, bigwig, "/dev/stdout -fill=0 -with-sum | cut -f1-3,10 | awk -v CONVFMT=%.17g '{print $1 \"\t\" $2 \"\t\" $3 \"\t\" $4}' >", output)
+    
+    if(commands_only) {
+        cat(cmd, file = 'recount-bwtool-commands.txt', append = TRUE)
+        return(NULL)
+    }
+    
     runCmd <- TRUE
     if(file.exists(output)) {
         check <- read.table(output, header = FALSE,

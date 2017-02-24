@@ -12,6 +12,7 @@ spec <- matrix(c(
     'sumsdir', 's', 1, 'character', 'Path to the output directory for the bwtool sum files',
     'cores', 'c', 1, 'integer', 'Number of cores to use. That is, how many bigWig files to process simultaneously',
     'bed', 'b', 2, 'character', 'Path to a bed file (optional)',
+    'commands', 'o', 2, 'logical', 'Whether to create just the commands',
 	'help' , 'h', 0, 'logical', 'Display help'
 ), byrow=TRUE, ncol=5)
 opt <- getopt(spec)
@@ -25,7 +26,7 @@ if (!is.null(opt$help)) {
 
 if(FALSE) {
     ## For testing
-    opt <- list(projectid = 2036, regions = '/dcl01/lieber/ajaffe/lab/insp/IGH/IGH.Rdata', sumsdir = '/users/lcollado/rb-test', cores = 1, bed = '/dcl01/lieber/ajaffe/lab/insp/IGH/sumsIGH/recount.bwtool-2017-02-22.bed')
+    opt <- list(projectid = 2036, regions = '/dcl01/lieber/ajaffe/lab/insp/IGH/IGH.Rdata', sumsdir = '/users/lcollado/rb-test', cores = 1, bed = '/dcl01/lieber/ajaffe/lab/insp/IGH/sumsIGH/recount.bwtool-2017-02-22.bed', commands = TRUE)
 }
 
 ## Load the custom url table and project names
@@ -65,7 +66,7 @@ if(FALSE) {
 ## Obtain rse file for the given project
 rse <- coverage_matrix_bwtool(project = project,
     regions = regions, sumsdir = opt$sumsdir, bed = opt$bed,
-    url_table = local_url, bpparam = bp)
+    url_table = local_url, bpparam = bp, commands_only = opt$commands)
 
 save(rse, file = paste0('rse_', project, '.Rdata'))
 
