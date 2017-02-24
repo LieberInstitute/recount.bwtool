@@ -173,10 +173,12 @@ coverage_matrix_bwtool <- function(project, regions,
     
     ## Get sample names
     m <- match(url_table$file_name[samples_i], pheno$bigwig_file)
+    ## Match the pheno with the samples
+    pheno <- pheno[m, ]
     if(project != 'TCGA') {
-        names(sampleFiles) <- pheno$run[m]
+        names(sampleFiles) <- pheno$run
     } else {
-        names(sampleFiles) <- pheno$gdc_file_id[m]
+        names(sampleFiles) <- pheno$gdc_file_id
     }
     
     ## Define bpparam
@@ -189,15 +191,7 @@ coverage_matrix_bwtool <- function(project, regions,
     
     ## Group results from all files
     counts <- do.call(cbind, counts)
-    
-    ## Match the pheno with the samples
-    if (project == 'TCGA') {
-        map <- match(names(sampleFiles), pheno$gdc_file_id)
-    } else {
-        map <- match(names(sampleFiles), pheno$run)
-    }
-    pheno <- pheno[map, ]
-    
+
     ## Build a RSE object
     rse <- SummarizedExperiment(assays = list('counts' = counts),
             colData = DataFrame(pheno), rowRanges = regions)
