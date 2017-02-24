@@ -102,7 +102,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -m ${EMAIL}
 #$ -t 1-2036
-#$ -tc 100
+#$ -tc 10
 echo "**** Job starts ****"
 date
 

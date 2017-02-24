@@ -67,8 +67,8 @@ if(FALSE) {
 rse <- coverage_matrix_bwtool(project = project,
     regions = regions, sumsdir = opt$sumsdir, bed = opt$bed,
     url_table = local_url, bpparam = bp, commands_only = opt$commands)
-
-save(rse, file = paste0('rse_', project, '.Rdata'))
+    
+if(!opt$commands) save(rse, file = paste0('rse_', project, '.Rdata'))
 
 ## Reproducibility information
 print('Reproducibility information:')

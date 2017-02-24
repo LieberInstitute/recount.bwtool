@@ -194,7 +194,12 @@ coverage_matrix_bwtool <- function(project, regions,
         MoreArgs = list('bwtool' = bwtool, 'bed' = bed, 'sumsdir' = sumsdir,
         'verbose' = verbose, 'commands_only' = commands_only),
         SIMPLIFY = FALSE, BPPARAM = bpparam)
-    if(commands_only) return(invisible(NULL))
+    if(commands_only) {
+        commands <- unlist(counts)
+        cat(commands, file = 'recount-bwtool-commands.txt', append = TRUE,
+            sep = '\n')
+        return(invisible(NULL))
+    }
     
     ## Group results from all files
     counts <- do.call(cbind, counts)
@@ -213,10 +218,7 @@ coverage_matrix_bwtool <- function(project, regions,
     output <- file.path(sumsdir, paste0(sample, '.sum.tsv'))
     cmd <- paste(bwtool, 'summary', bed, bigwig, "/dev/stdout -fill=0 -with-sum | cut -f1-3,10 | awk -v CONVFMT=%.17g '{print $1 \"\t\" $2 \"\t\" $3 \"\t\" $4}' >", output)
     
-    if(commands_only) {
-        cat(cmd, file = 'recount-bwtool-commands.txt', append = TRUE)
-        return(NULL)
-    }
+    if(commands_only) return(cmd)
     
     runCmd <- TRUE
     if(file.exists(output)) {
