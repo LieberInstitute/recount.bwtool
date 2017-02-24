@@ -37,7 +37,7 @@
 #' Note that project SRP012682 is only available at JHPCE. Use \code{local_url}
 #' saved in \code{/dcl01/leek/data/recount-website/fileinfo/local_url.RData}.
 #' @param commands_only If \code{TRUE} the bwtool commands will be saved in a
-#' file called recount-bwtool-commands.txt and exit without running
+#' file called recount-bwtool-commands_PROJECT.txt and exit without running
 #' \code{bwtool}. This is useful if you have a very large regions set and want
 #' to run the commands in an array job. Then run
 #' \code{coverage_matrix_bwtool(commands_only = FALSE)} to create the RSE
@@ -196,8 +196,8 @@ coverage_matrix_bwtool <- function(project, regions,
         SIMPLIFY = FALSE, BPPARAM = bpparam)
     if(commands_only) {
         commands <- unlist(counts)
-        cat(commands, file = 'recount-bwtool-commands.txt', append = TRUE,
-            sep = '\n')
+        cat(commands, file = paste0('recount-bwtool-commands_', project,
+            '.txt'), sep = '\n')
         return(invisible(NULL))
     }
     

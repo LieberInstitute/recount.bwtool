@@ -91,6 +91,13 @@ mkdir -p logs
 
 # Construct shell files
 
+## Stop if the commands file already exists
+if [[-f "${MAINDIR}/recount-bwtool-commands.txt" ]]
+then
+    echo "recount-bwtool-commands.txt already exists, please delete it or rename it"
+    exit 1
+fi
+
 ## Create the recount-bwtool-commands.txt file
 echo "Creating script ${sname}"
 cat > ${MAINDIR}/.${sname}.sh <<EOF
@@ -102,7 +109,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
 #$ -m ${EMAIL}
 #$ -t 1-2036
-#$ -tc 10
+#$ -tc 199
 echo "**** Job starts ****"
 date
 
@@ -114,6 +121,40 @@ echo "Hostname: \${HOSTNAME}"
 echo "Task id: \${SGE_TASK_ID}"
 
 Rscript ${SCRIPTPATH}/single_rse.R -p "\${SGE_TASK_ID}" -r "${REGIONS}" -s "${SUMSDIR}" -c "1" -b "${BED}" -o "TRUE"
+
+echo "**** Job ends ****"
+date
+EOF
+
+call="qsub .${sname}.sh"
+echo $call
+$call
+
+## Now run the commands
+SHORT="recount-bwtool-commandmerge"
+sname="${SHORT}.${RIGHTNOW}"
+echo "Creating script ${sname}"
+cat > ${MAINDIR}/.${sname}.sh <<EOF
+#!/bin/bash
+#$ -cwd
+#$ -l ${SGEQUEUE}mem_free=1G,h_vmem=2G,h_fsize=100G
+#$ -N ${sname}
+#$ -o ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
+#$ -e ${MAINDIR}/logs/${SHORT}.\$TASK_ID.txt
+#$ -m ${EMAIL}
+#$ -hold_jid recount-bwtool-commands.${RIGHTNOW}
+echo "**** Job starts ****"
+date
+
+echo "**** JHPCE info ****"
+echo "User: \${USER}"
+echo "Job id: \${JOB_ID}"
+echo "Job name: \${JOB_NAME}"
+echo "Hostname: \${HOSTNAME}"
+echo "Task id: \${SGE_TASK_ID}"
+
+## Merge command files
+cat ${MAINDIR}/recount-bwtool-commands_*.txt > ${MAINDIR}/recount-bwtool-commands.txt
 
 echo "**** Job ends ****"
 date
@@ -137,7 +178,7 @@ cat > ${MAINDIR}/.${sname}.sh <<EOF
 #$ -m ${EMAIL}
 #$ -t 1-70603
 #$ -tc 199
-#$ -hold_jid recount-bwtool-commands.${RIGHTNOW}
+#$ -hold_jid recount-bwtool-commandmerge.${RIGHTNOW}
 echo "**** Job starts ****"
 date
 
