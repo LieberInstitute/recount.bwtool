@@ -1,3 +1,11 @@
+CHANGES IN VERSION 0.99.8
+-------------------------
+
+SIGNIFICANT USER VISIBLE CHANGES
+
+    o coverage_matrix_bwtool() doesn't run bwtool if the resulting tsv file
+        already exists and has the same number of lines as expected.
+
 CHANGES IN VERSION 0.99.2
 -------------------------
 

@@ -58,8 +58,9 @@
 #'
 #' @importFrom utils read.table
 #' @importFrom methods is
-#' @import GenomicRanges RCurl BiocParallel rtracklayer recount 
+#' @import GenomicRanges RCurl BiocParallel rtracklayer recount
 #' SummarizedExperiment S4Vectors
+#' @importFrom R.utils countLines
 #'
 #' @seealso \link[recount]{coverage_matrix}, \link[recount]{download_study},
 #' \link[derfinder]{findRegions}, \link[derfinder]{railMatrix}
@@ -209,11 +210,20 @@ coverage_matrix_bwtool <- function(project, regions,
     if(verbose) message(paste(Sys.time(), 'processing sample', sample))
     output <- file.path(sumsdir, paste0(sample, '.sum.tsv'))
     cmd <- paste(bwtool, 'summary', bed, bigwig, "/dev/stdout -fill=0 -with-sum | cut -f1-3,10 | awk -v CONVFMT=%.17g '{print $1 \"\t\" $2 \"\t\" $3 \"\t\" $4}' >", output)
-    system(cmd)
-    stopifnot(file.exists(output))
-    
-    res <- read.table(output, header = FALSE,
-        colClasses = list(NULL, NULL, NULL, 'numeric'))
+    runCmd <- TRUE
+    if(file.exists(output)) {
+        check <- read.table(output, header = FALSE,
+            colClasses = list(NULL, NULL, NULL, 'numeric'))
+            runCmd <- nrow(check) != countLines(bed)
+    }
+    if(runCmd) {
+        system(cmd)
+        stopifnot(file.exists(output))
+        res <- read.table(output, header = FALSE,
+            colClasses = list(NULL, NULL, NULL, 'numeric'))
+    } else {
+        res <- check
+    }
     colnames(res) <- sample
     return(as.matrix(res))
 }
