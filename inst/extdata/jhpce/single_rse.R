@@ -1,5 +1,5 @@
 ## Required libraries
-stopifnot(packageVersion('recount.bwtool') >= '0.99.10')
+stopifnot(packageVersion('recount.bwtool') >= '0.99.11')
 library('recount.bwtool')
 library('BiocParallel')
 library('devtools')
@@ -11,8 +11,8 @@ spec <- matrix(c(
     'regions', 'r', 1, 'character', 'Path to a file that has a GRanges object',
     'sumsdir', 's', 1, 'character', 'Path to the output directory for the bwtool sum files',
     'cores', 'c', 1, 'integer', 'Number of cores to use. That is, how many bigWig files to process simultaneously',
+    'commands', 'o', 1, 'logical', 'Whether to create just the commands',
     'bed', 'b', 2, 'character', 'Path to a bed file (optional)',
-    'commands', 'o', 2, 'logical', 'Whether to create just the commands',
 	'help' , 'h', 0, 'logical', 'Display help'
 ), byrow=TRUE, ncol=5)
 opt <- getopt(spec)

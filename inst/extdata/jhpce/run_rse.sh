@@ -210,6 +210,7 @@ echo "Task id: \${SGE_TASK_ID}"
 bwtoolcmd=\$(awk "NR==\${SGE_TASK_ID}" ${MAINDIR}/recount-bwtool-commands.txt)
 
 ## Run bwtool
+mkdir -p ${SUMSDIR}
 echo "\${bwtoolcmd}"
 \${bwtoolcmd}
 
@@ -248,7 +249,7 @@ echo "Job name: \${JOB_NAME}"
 echo "Hostname: \${HOSTNAME}"
 echo "Task id: \${SGE_TASK_ID}"
 
-Rscript ${SCRIPTPATH}/single_rse.R -p "\${SGE_TASK_ID}" -r "${REGIONS}" -s "${SUMSDIR}" -c "${CORES}" -b "${BED}"
+Rscript ${SCRIPTPATH}/single_rse.R -p "\${SGE_TASK_ID}" -r "${REGIONS}" -s "${SUMSDIR}" -c "${CORES}" -b "${BED}" -o "FALSE"
 
 echo "**** Job ends ****"
 date
@@ -284,7 +285,7 @@ echo "Job name: \${JOB_NAME}"
 echo "Hostname: \${HOSTNAME}"
 echo "Task id: \${SGE_TASK_ID}"
 
-Rscript ${SCRIPTPATH}/single_rse.R -p "\${SGE_TASK_ID}" -r "${REGIONS}" -s "${SUMSDIR}" -c "${CORES}" -b "${BED}"
+Rscript ${SCRIPTPATH}/single_rse.R -p "\${SGE_TASK_ID}" -r "${REGIONS}" -s "${SUMSDIR}" -c "${CORES}" -b "${BED}" -o "FALSE"
 
 echo "**** Job ends ****"
 date
