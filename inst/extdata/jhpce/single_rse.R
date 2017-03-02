@@ -61,6 +61,7 @@ if(FALSE) {
     sumsdir = opt$sumsdir
     bed = opt$bed
     url_table = local_url
+    commands_only = opt$commands
 }
 
 ## Obtain rse file for the given project
