@@ -113,7 +113,9 @@ coverage_matrix_bwtool <- function(project, regions,
     
     ## Subset url data
     url_table <- url_table[url_table$project == project, ]
-    stopifnot(nrow(url_table) > 0)
+    if(nrow(url_table) == 0) {
+        stop("Invalid 'project' argument. There's no such 'project' in the recount_url data.frame or the supplied url_table.")
+    }
     
     ## Export regions to a BED file if necessary
     if(is.null(bed)) {
