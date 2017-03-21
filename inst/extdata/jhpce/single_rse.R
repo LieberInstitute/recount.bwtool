@@ -1,5 +1,5 @@
 ## Required libraries
-stopifnot(packageVersion('recount.bwtool') >= '0.99.11')
+stopifnot(packageVersion('recount.bwtool') >= '0.99.13')
 library('recount.bwtool')
 library('BiocParallel')
 library('devtools')
@@ -30,8 +30,8 @@ if(FALSE) {
 }
 
 ## Load the custom url table and project names
-load('/dcl01/leek/data/recount-website/fileinfo/local_url.RData')
-projects <- unique(local_url$project[grep('.bw$', local_url$file_name)])
+load('/dcl01/leek/data/recount-website/fileinfo/recount_url.RData')
+projects <- unique(recount_url$project[grep('.bw$', recount_url$file_name)])
 stopifnot(opt$projectid >=1 & opt$projectid <= length(projects))
 project <- projects[opt$projectid]
 
@@ -60,14 +60,13 @@ if(FALSE) {
     verbose = TRUE
     sumsdir = opt$sumsdir
     bed = opt$bed
-    url_table = local_url
     commands_only = opt$commands
 }
 
 ## Obtain rse file for the given project
 rse <- coverage_matrix_bwtool(project = project,
     regions = regions, sumsdir = opt$sumsdir, bed = opt$bed,
-    url_table = local_url, bpparam = bp, commands_only = opt$commands)
+    bpparam = bp, commands_only = opt$commands)
     
 if(!opt$commands) save(rse, file = paste0('rse_', project, '.Rdata'))
 
