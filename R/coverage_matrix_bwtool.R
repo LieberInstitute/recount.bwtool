@@ -42,6 +42,8 @@
 #' to run the commands in an array job. Then run
 #' \code{coverage_matrix_bwtool(commands_only = FALSE)} to create the RSE
 #' object(s).
+#' @param pheno \code{NULL} by default. Specify only if you are using a custom
+#' metadata table.
 #' @param ... Additional arguments passed to \link{download_study} when
 #' \code{outdir} is specified but the required files are missing.
 #' 
@@ -99,7 +101,8 @@
 coverage_matrix_bwtool <- function(project, regions,
     bwtool = '/dcl01/leek/data/bwtool/bwtool-1.0/bwtool',
     bpparam = NULL, outdir = NULL, verbose = TRUE, sumsdir = tempdir(),
-    bed = NULL, url_table = NULL, commands_only = FALSE, ...) {    
+    bed = NULL, url_table = NULL, commands_only = FALSE,
+    pheno = NULL, ...) {    
     ## Check inputs
     stopifnot(is.character(project) & length(project) == 1)
     stopifnot(is(regions, 'GRanges'))
@@ -176,7 +179,11 @@ coverage_matrix_bwtool <- function(project, regions,
     }
         
     ## Read pheno data
-    pheno <- recount:::.read_pheno(phenoFile, project)
+    if(is.null(pheno)) {
+        pheno <- recount:::.read_pheno(phenoFile, project) 
+    } else {
+        stopifnot('bigwig_file' %in% colnames(pheno))
+    }
     
     ## Get sample names
     m <- match(url_table$file_name[samples_i], pheno$bigwig_file)
