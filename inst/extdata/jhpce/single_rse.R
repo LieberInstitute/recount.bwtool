@@ -1,6 +1,7 @@
 ## Required libraries
-stopifnot(packageVersion('recount.bwtool') >= '0.99.13')
+stopifnot(packageVersion('recount.bwtool') >= '0.99.15')
 library('recount.bwtool')
+library('recount')
 library('BiocParallel')
 library('devtools')
 library('getopt')
@@ -30,7 +31,6 @@ if(FALSE) {
 }
 
 ## Load the custom url table and project names
-load('/dcl01/leek/data/recount-website/fileinfo/recount_url.RData')
 projects <- unique(recount_url$project[grep('.bw$', recount_url$file_name)])
 stopifnot(opt$projectid >=1 & opt$projectid <= length(projects))
 project <- projects[opt$projectid]
