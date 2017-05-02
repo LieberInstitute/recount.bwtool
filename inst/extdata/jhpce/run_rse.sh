@@ -92,7 +92,7 @@ mkdir -p logs
 # Construct shell files
 
 ## Stop if the commands file already exists
-if [[-f "${MAINDIR}/recount-bwtool-commands.txt" ]]
+if [[ -f "${MAINDIR}/recount-bwtool-commands.txt" ]]
 then
     echo "recount-bwtool-commands.txt already exists, please delete it or rename it"
     exit 1
