@@ -20,6 +20,36 @@ biocLite(c('recount'))
 biocLite('LieberInstitute/recount.bwtool')
 ```
 
+## Install `bwtool` on SciServer
+
+Thanks to [@BenLangmead](https://github.com/BenLangmead), you can install `bwtool` on SciServer Compute with these commands:
+
+```bash
+conda config --add channels conda-forge
+conda config --add channels defaults
+conda config --add channels r
+conda config --add channels bioconda
+
+conda install libpng
+
+export CPATH="$CPATH:$HOME/miniconda3/include"
+export LIBRARY_PATH="$LIBRARY_PATH:$HOME/miniconda3/lib"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/miniconda3/lib"
+
+git clone https://github.com/CRG-Barcelona/libbeato.git
+git clone https://github.com/CRG-Barcelona/bwtool.git
+cd libbeato/
+./configure --prefix=$HOME CFLAGS="-g -O0 -I${HOME}/include" LDFLAGS=-L${HOME}/lib
+make
+make install
+cd ../bwtool/
+./configure --prefix=$HOME CFLAGS="-g -O0 -I${HOME}/include" LDFLAGS=-L${HOME}/lib
+make
+make install
+```
+
+which would make `bwtool` available at `/home/idies/bin/bwtool`.
+
 # Citation
 
 Below is the citation output from using `citation('recount.bwtool')` in R. Please 
