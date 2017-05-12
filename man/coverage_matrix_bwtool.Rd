@@ -46,7 +46,7 @@ define \code{regions}.}
 \item{url_table}{A custom data.frame named with the same columns as
 \code{recount::recount_url}. If \code{NULL}, the default is 
 \code{recount::recount_url}.
-Note that project SRP012682 is only available at JHPCE. Use \code{local_url}
+Use \code{local_url}
 saved in \code{/dcl01/leek/data/recount-website/fileinfo/local_url.RData}.}
 
 \item{commands_only}{If \code{TRUE} the bwtool commands will be saved in a

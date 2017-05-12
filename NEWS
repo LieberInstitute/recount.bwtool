@@ -1,3 +1,12 @@
+CHANGES IN VERSION 0.99.16
+--------------------------
+
+SIGNIFICANT USER VISIBLE CHANGES
+
+    o Allows accessing GTEx data (bigWig files) on SciServer since they exist
+        there now.
+
+
 CHANGES IN VERSION 0.99.13
 --------------------------
 
