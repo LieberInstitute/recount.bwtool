@@ -125,7 +125,7 @@ coverage_matrix_bwtool <- function(project, regions,
         bed <- file.path(sumsdir, paste0('recount.bwtool-', Sys.Date(), '.bed'))
     }
     
-    if(!file.exists(bed) or overwrite) {
+    if(!file.exists(bed) || overwrite) {
         if (verbose) message(paste(Sys.time(), 'creating the BED file', bed))
         rtracklayer::export(regions, con = bed, format='BED')
         stopifnot(file.exists(bed))
