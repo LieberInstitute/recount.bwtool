@@ -34,7 +34,7 @@
 #' @param url_table A custom data.frame named with the same columns as
 #' \code{recount::recount_url}. If \code{NULL}, the default is 
 #' \code{recount::recount_url}.
-#' Note that project SRP012682 is only available at JHPCE. Use \code{local_url}
+#' Use \code{local_url}
 #' saved in \code{/dcl01/leek/data/recount-website/fileinfo/local_url.RData}.
 #' @param commands_only If \code{TRUE} the bwtool commands will be saved in a
 #' file called recount-bwtool-commands_PROJECT.txt and exit without running
@@ -147,7 +147,6 @@ coverage_matrix_bwtool <- function(project, regions,
         phenoFile <- url_table$path[url_table$file_name == paste0(project,
             '.tsv')]
     } else if (sciserver) {
-        if(project == 'SRP012682') stop("The BigWig files for project SRP012682 are not on SciServer.")
         sampleFiles <- gsub('http://duffel.rail.bio/recount/',
             '/home/idies/workspace/recount01/', url_table$url[samples_i])
         phenoFile <- gsub('http://duffel.rail.bio/recount/',
@@ -160,7 +159,6 @@ coverage_matrix_bwtool <- function(project, regions,
             file.path(outdir, 'bw', url_table$file_name[i])
         })
         if(any(!file.exists(sampleFiles))) {
-            if(project == 'SRP012682') stop("The BigWig files for project SRP012682 are not publicly available.")
             download_study(project = project, type = 'samples', outdir = outdir,
                 download = TRUE, ...)
         }
