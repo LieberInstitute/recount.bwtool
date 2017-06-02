@@ -57,20 +57,18 @@ run this yourself to check for any updates on how to cite __recount.bwtool__.
 
 To cite the __recount.bwtool__ package in publications use:
 
-Collado-Torres L, Nellore A, Kammers K, Ellis SE, Taub MA, Hansen KD, Jaffe AE, Langmead B and Leek JT (2016). “recount: A large-scale resource of analysis-ready RNA-seq expression data.” _bioRxiv_. doi: 10.1101/068478 (URL: http://doi.org/10.1101/068478), <URL:
-http://biorxiv.org/content/early/2016/08/08/068478>.
+Collado-Torres L, Nellore A, Kammers K, Ellis SE, Taub MA, Hansen KD, Jaffe AE, Langmead B and Leek JT (2017). “Reproducible RNA-seq analysis using _recount2_.” _Nature Biotechnology_. doi: 10.1038/nbt.3838 (URL: http://doi.org/10.1038/nbt.3838), <URL: http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html>.
 
 A BibTeX entry for LaTeX users is
 
 @Article{,
-    title = {recount: A large-scale resource of analysis-ready RNA-seq expression data},
+    title = {Reproducible RNA-seq analysis using recount2},
     author = {Leonardo Collado-Torres and Abhinav Nellore and Kai Kammers and Shannon E. Ellis and Margaret A. Taub and Kasper D. Hansen and  and Andrew E. Jaffe and Ben Langmead and Jeffrey T. Leek},
-    year = {2016},
-    journal = {bioRxiv},
-	doi = {10.1101/068478}
-    url = {http://biorxiv.org/content/early/2016/08/08/068478},
+    year = {2017},
+    journal = {Nature Biotechnology},
+    doi = {10.1038/nbt.3838},
+    url = {http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html},
 }
-
 # Testing
 
 Testing on Bioc-devel is feasible thanks to [R Travis](http://docs.travis-ci.com/user/languages/r/) as well as Bioconductor's nightly build.
