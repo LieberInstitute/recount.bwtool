@@ -1,3 +1,13 @@
+CHANGES IN VERSION 0.99.17
+--------------------------
+
+NEW FEATURES
+
+    o Added the function coverage_bwtool() for computing coverage matrices
+        using bwtool for a user-specified list of bigWig files and a
+        user-specified phenotype table. It's heavily based on
+        coverage_matrix_bwtool.
+
 CHANGES IN VERSION 0.99.16
 --------------------------
 
