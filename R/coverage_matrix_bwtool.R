@@ -44,6 +44,7 @@
 #' object(s).
 #' @param pheno \code{NULL} by default. Specify only if you are using a custom
 #' metadata table.
+#' @param overwrite Logical, whether to overwrite output files.
 #' @param ... Additional arguments passed to \link{download_study} when
 #' \code{outdir} is specified but the required files are missing.
 #' 

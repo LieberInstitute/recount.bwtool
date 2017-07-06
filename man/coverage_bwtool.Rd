@@ -8,7 +8,8 @@ using \code{bwtool} and build a
 \usage{
 coverage_bwtool(bws, regions, strand = "*", pheno = NULL,
   bwtool = "/dcl01/leek/data/bwtool/bwtool-1.0/bwtool", bpparam = NULL,
-  verbose = TRUE, sumsdir = tempdir(), commands_only = FALSE)
+  verbose = TRUE, sumsdir = tempdir(), commands_only = FALSE,
+  overwrite = FALSE)
 }
 \arguments{
 \item{bws}{A named vector with the paths to the bigWig files. The names
@@ -45,6 +46,8 @@ file called coverage_bwtool_strandSTRAND.txt and exit without running
 to run the commands in an array job. Then run
 \code{coverage_bwtool(commands_only = FALSE)} to create the RSE
 object(s).}
+
+\item{overwrite}{Logical, whether to overwrite output files.}
 }
 \value{
 A \link[SummarizedExperiment]{RangedSummarizedExperiment-class}

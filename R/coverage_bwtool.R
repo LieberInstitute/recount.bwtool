@@ -32,6 +32,7 @@
 #' to run the commands in an array job. Then run
 #' \code{coverage_bwtool(commands_only = FALSE)} to create the RSE
 #' object(s).
+#' @param overwrite Logical, whether to overwrite output files.
 #' 
 #'
 #' @return A \link[SummarizedExperiment]{RangedSummarizedExperiment-class}
@@ -65,7 +66,7 @@
 coverage_bwtool <- function(bws, regions, strand = '*', pheno = NULL,
     bwtool = '/dcl01/leek/data/bwtool/bwtool-1.0/bwtool',
     bpparam = NULL, verbose = TRUE, sumsdir = tempdir(),
-    commands_only = FALSE) {
+    commands_only = FALSE, overwrite = FALSE) {
         
     ## Check inputs
     stopifnot(!is.null(names(bws)))
@@ -90,7 +91,7 @@ coverage_bwtool <- function(bws, regions, strand = '*', pheno = NULL,
     bed <- file.path(sumsdir, paste0('coverage_bwtool_strand', strand, '_',
         Sys.Date(), '.bed'))
     
-    if(!file.exists(bed)) {
+    if(!file.exists(bed) || overwrite) {
         if (verbose) message(paste(Sys.time(), 'creating the BED file', bed))
         rtracklayer::export(regions, con = bed, format = 'BED')
         stopifnot(file.exists(bed))
@@ -102,7 +103,8 @@ coverage_bwtool <- function(bws, regions, strand = '*', pheno = NULL,
     ## Run bwtool and load the data
     counts <- bpmapply(.run_bwtool, bws, names(bws),
         MoreArgs = list('bwtool' = bwtool, 'bed' = bed, 'sumsdir' = sumsdir,
-        'verbose' = verbose, 'commands_only' = commands_only),
+        'verbose' = verbose, 'commands_only' = commands_only,
+        'overwrite' = overwrite),
         SIMPLIFY = FALSE, BPPARAM = bpparam)
     if(commands_only) {
         commands <- unlist(counts)

@@ -9,7 +9,8 @@ given SRA study using \code{bwtool} as a
 coverage_matrix_bwtool(project, regions,
   bwtool = "/dcl01/leek/data/bwtool/bwtool-1.0/bwtool", bpparam = NULL,
   outdir = NULL, verbose = TRUE, sumsdir = tempdir(), bed = NULL,
-  url_table = NULL, commands_only = FALSE, pheno = NULL, ...)
+  url_table = NULL, commands_only = FALSE, pheno = NULL,
+  overwrite = FALSE, ...)
 }
 \arguments{
 \item{project}{A character vector with one SRA study id.}
@@ -58,6 +59,8 @@ object(s).}
 
 \item{pheno}{\code{NULL} by default. Specify only if you are using a custom
 metadata table.}
+
+\item{overwrite}{Logical, whether to overwrite output files.}
 
 \item{...}{Additional arguments passed to \link{download_study} when
 \code{outdir} is specified but the required files are missing.}
