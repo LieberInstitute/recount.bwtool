@@ -102,7 +102,7 @@ coverage_matrix_bwtool <- function(project, regions,
     bwtool = '/dcl01/leek/data/bwtool/bwtool-1.0/bwtool',
     bpparam = NULL, outdir = NULL, verbose = TRUE, sumsdir = tempdir(),
     bed = NULL, url_table = NULL, commands_only = FALSE,
-    pheno = NULL, ...) {    
+    pheno = NULL, overwrite = FALSE, ...) {
     ## Check inputs
     stopifnot(is.character(project) & length(project) == 1)
     stopifnot(is(regions, 'GRanges'))
@@ -125,7 +125,7 @@ coverage_matrix_bwtool <- function(project, regions,
         bed <- file.path(sumsdir, paste0('recount.bwtool-', Sys.Date(), '.bed'))
     }
     
-    if(!file.exists(bed)) {
+    if(!file.exists(bed) || overwrite) {
         if (verbose) message(paste(Sys.time(), 'creating the BED file', bed))
         rtracklayer::export(regions, con = bed, format='BED')
         stopifnot(file.exists(bed))
@@ -199,7 +199,8 @@ coverage_matrix_bwtool <- function(project, regions,
     ## Run bwtool and load the data
     counts <- bpmapply(.run_bwtool, sampleFiles, names(sampleFiles),
         MoreArgs = list('bwtool' = bwtool, 'bed' = bed, 'sumsdir' = sumsdir,
-        'verbose' = verbose, 'commands_only' = commands_only),
+        'verbose' = verbose, 'commands_only' = commands_only,
+        'overwrite' = overwrite),
         SIMPLIFY = FALSE, BPPARAM = bpparam)
     if(commands_only) {
         commands <- unlist(counts)
@@ -220,7 +221,7 @@ coverage_matrix_bwtool <- function(project, regions,
 }
 
 .run_bwtool <- function(bigwig, sample, bwtool, bed, sumsdir, verbose,
-    commands_only) {
+    commands_only, overwrite=FALSE) {
     if(verbose) message(paste(Sys.time(), 'processing sample', sample))
     output <- file.path(sumsdir, paste0(sample, '.sum.tsv'))
     cmd <- paste('bash', 
@@ -230,7 +231,7 @@ coverage_matrix_bwtool <- function(project, regions,
     if(commands_only) return(cmd)
     
     runCmd <- TRUE
-    if(file.exists(output)) {
+    if(file.exists(output) && !overwrite) {
         check <- read.table(output, header = FALSE,
             colClasses = list(NULL, NULL, NULL, 'numeric'))
             runCmd <- nrow(check) != countLines(bed)
