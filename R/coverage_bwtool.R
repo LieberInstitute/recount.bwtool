@@ -25,7 +25,7 @@
 #' way.
 #' @param sumsdir The path to an existing directory where the \code{bwtool}
 #' sum tsv files will be saved. We recommend setting this to a value beyond
-#' the default one. Use separate output directories per strand.
+#' the default one.
 #' @param commands_only If \code{TRUE} the bwtool commands will be saved in a
 #' file called coverage_bwtool_strandSTRAND.txt and exit without running
 #' \code{bwtool}. This is useful if you have a very large regions set and want
@@ -33,6 +33,8 @@
 #' \code{coverage_bwtool(commands_only = FALSE)} to create the RSE
 #' object(s).
 #' @param overwrite Logical, whether to overwrite output files.
+#' @param stranded_sumsdir Logical, whether to automatically add the strand
+#' to \code{sumsdir}, to avoid overwriting files from different strands.
 #' 
 #'
 #' @return A \link[SummarizedExperiment]{RangedSummarizedExperiment-class}
@@ -51,6 +53,7 @@
 #' @seealso \link[recount.bwtool]{coverage_matrix_bwtool}
 #'
 #' @examples
+#'
 #' if(.Platform$OS.type != 'windows') {
 #' ## Disable the example for now. I'd have to figure out how to install
 #' ## bwtool on travis
@@ -66,7 +69,7 @@
 coverage_bwtool <- function(bws, regions, strand = '*', pheno = NULL,
     bwtool = '/dcl01/leek/data/bwtool/bwtool-1.0/bwtool',
     bpparam = NULL, verbose = TRUE, sumsdir = tempdir(),
-    commands_only = FALSE, overwrite = FALSE) {
+    commands_only = FALSE, overwrite = FALSE, stranded_sumsdir = TRUE) {
         
     ## Check inputs
     stopifnot(!is.null(names(bws)))
@@ -79,6 +82,12 @@ coverage_bwtool <- function(bws, regions, strand = '*', pheno = NULL,
             sample = names(bws))
     } else {
         stopifnot(nrow(pheno) != length(bws))
+    }
+    
+    if(stranded_sumsdir) {
+        sumsdir <- paste0(sumsdir, '_', ifelse(strand == '*', 'unstranded',
+            ifelse(strand == '+', 'strand_positive', 'strand_minus')))
+        message(paste(Sys.time(), 'switched sumsdir to', sumsdir))
     }
     dir.create(sumsdir, recursive = TRUE, showWarnings = FALSE)
     

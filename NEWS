@@ -1,3 +1,13 @@
+CHANGES IN VERSION 0.99.19
+--------------------------
+
+SIGNIFICANT USER VISIBLE CHANGES
+
+    o coverage_bwtool() now has a new argument: 'stranded_sumsdir'. By default
+        this will append the strand to 'sumsdir' to avoid overwriting files
+        from different strands.
+
+
 CHANGES IN VERSION 0.99.18
 --------------------------
 

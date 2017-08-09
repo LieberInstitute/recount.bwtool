@@ -9,7 +9,7 @@ using \code{bwtool} and build a
 coverage_bwtool(bws, regions, strand = "*", pheno = NULL,
   bwtool = "/dcl01/leek/data/bwtool/bwtool-1.0/bwtool", bpparam = NULL,
   verbose = TRUE, sumsdir = tempdir(), commands_only = FALSE,
-  overwrite = FALSE)
+  overwrite = FALSE, stranded_sumsdir = TRUE)
 }
 \arguments{
 \item{bws}{A named vector with the paths to the bigWig files. The names
@@ -38,7 +38,7 @@ way.}
 
 \item{sumsdir}{The path to an existing directory where the \code{bwtool}
 sum tsv files will be saved. We recommend setting this to a value beyond
-the default one. Use separate output directories per strand.}
+the default one.}
 
 \item{commands_only}{If \code{TRUE} the bwtool commands will be saved in a
 file called coverage_bwtool_strandSTRAND.txt and exit without running
@@ -48,6 +48,9 @@ to run the commands in an array job. Then run
 object(s).}
 
 \item{overwrite}{Logical, whether to overwrite output files.}
+
+\item{stranded_sumsdir}{Logical, whether to automatically add the strand
+to \code{sumsdir}, to avoid overwriting files from different strands.}
 }
 \value{
 A \link[SummarizedExperiment]{RangedSummarizedExperiment-class}
@@ -63,6 +66,7 @@ Based on \link{coverage_matrix_bwtool}, but made more general for
 data outside recount2.
 }
 \examples{
+
 if(.Platform$OS.type != 'windows') {
 ## Disable the example for now. I'd have to figure out how to install
 ## bwtool on travis
