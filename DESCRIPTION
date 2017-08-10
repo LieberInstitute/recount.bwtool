@@ -1,7 +1,7 @@
 Package: recount.bwtool
 Title: Compute coverage matrices from recount quickly using bwtool
-Version: 0.99.19
-Date: 2017-08-09
+Version: 0.99.20
+Date: 2017-08-10
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"),
     email = "leo.collado@libd.org"))
 Depends:
@@ -26,7 +26,7 @@ Description: Compute coverage matrices from recount
     available in recount. For example, it can be used for
     annotation-agnostic differential expression analyses with the data from the
     recount project as described at
-    http://biorxiv.org/content/early/2016/08/08/068478.
+    http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html.
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
