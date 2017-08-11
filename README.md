@@ -3,7 +3,7 @@ Status: Travis CI [![Build Status](https://travis-ci.org/LieberInstitute/recount
 recount.bwtool
 ==============
 
-Compute coverage matrices from recount https://jhubiostatistics.shinyapps.io/recount/ using bwtool. This makes it easy to explore regions beyond the genes and exons that are available in recount. For example, it can be used for annotation-agnostic differential expression analyses with the data from the recount project as described at http://biorxiv.org/content/early/2016/08/08/068478.
+Compute coverage matrices from [recount](https://jhubiostatistics.shinyapps.io/recount/) using [bwtool](https://github.com/CRG-Barcelona/bwtool). This makes it easy to explore regions beyond the genes and exons that are available in recount. For example, it can be used for annotation-agnostic differential expression analyses with the data from the recount project as described in the [paper](http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html). This package was used for computing expressed regions in the GTEx data as described in this [pre-print](biorxiv.org/content/early/2017/06/03/145656).
 
 For more information about `recount.bwtool` check the help page for the `coverage_matrix_bwtool()` function.
 
@@ -52,23 +52,43 @@ which would make `bwtool` available at `/home/idies/bin/bwtool`.
 
 # Citation
 
-Below is the citation output from using `citation('recount.bwtool')` in R. Please 
-run this yourself to check for any updates on how to cite __recount.bwtool__.
+Below is the citation output from using `citation('recount.bwtool')` in R. Please run this yourself to check for any updates on how to cite __recount.bwtool__.
 
 To cite the __recount.bwtool__ package in publications use:
 
-Collado-Torres L, Nellore A, Kammers K, Ellis SE, Taub MA, Hansen KD, Jaffe AE, Langmead B and Leek JT (2017). “Reproducible RNA-seq analysis using _recount2_.” _Nature Biotechnology_. doi: 10.1038/nbt.3838 (URL: http://doi.org/10.1038/nbt.3838), <URL: http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html>.
+Ellis SE, Collado-Torres L, Jaffe AE and Leek JT (2017). “Improving the value of public RNA-seq expression data by phenotype prediction.” _bioRxiv_. doi:
+10.1101/145656 (URL: http://doi.org/10.1101/145656), <URL: http://www.biorxiv.org/content/early/2017/06/03/145656>.
 
 A BibTeX entry for LaTeX users is
 
+```
+@Article{,
+    title = {Improving the value of public RNA-seq expression data by phenotype prediction},
+    author = {Shannon E. Ellis and Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
+    year = {2017},
+    journal = {bioRxiv},
+    doi = {10.1101/145656},
+    url = {http://www.biorxiv.org/content/early/2017/06/03/145656},
+}
+```
+
+To cite __recount__ use:
+
+Collado-Torres L, Nellore A, Kammers K, Ellis SE, Taub MA, Hansen KD, Jaffe AE, Langmead B and Leek JT (2017). “Reproducible RNA-seq analysis using
+recount2.” _Nature Biotechnology_. doi: 10.1038/nbt.3838 (URL: http://doi.org/10.1038/nbt.3838), <URL:
+http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html>.
+
+```
 @Article{,
     title = {Reproducible RNA-seq analysis using recount2},
-    author = {Leonardo Collado-Torres and Abhinav Nellore and Kai Kammers and Shannon E. Ellis and Margaret A. Taub and Kasper D. Hansen and  and Andrew E. Jaffe and Ben Langmead and Jeffrey T. Leek},
+    author = {Leonardo Collado-Torres and Abhinav Nellore and Kai Kammers and Shannon E. Ellis and Margaret A. Taub and Kasper D. Hansen and Andrew E. Jaffe and Ben Langmead and Jeffrey T. Leek},
     year = {2017},
     journal = {Nature Biotechnology},
     doi = {10.1038/nbt.3838},
     url = {http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html},
 }
+```
+
 # Testing
 
-Testing on Bioc-devel is feasible thanks to [R Travis](http://docs.travis-ci.com/user/languages/r/) as well as Bioconductor's nightly build.
+Testing on Bioc-devel is feasible thanks to [R Travis](http://docs.travis-ci.com/user/languages/r/).

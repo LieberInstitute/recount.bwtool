@@ -1,4 +1,18 @@
-bibentry(bibtype="article",
+c(
+    bibentry(bibtype="article",
+        title = "Improving the value of public RNA-seq expression data by phenotype prediction",
+        author = personList(
+            as.person("Shannon E. Ellis"),
+            as.person("Leonardo Collado-Torres"),
+            as.person("Andrew E. Jaffe"),
+            as.person("Jeffrey T. Leek")
+        ),
+        year = 2017,
+        journal = "bioRxiv",
+        doi = "10.1101/145656",
+        url = "http://www.biorxiv.org/content/early/2017/06/03/145656"
+    ),
+    bibentry(bibtype="article",
         title = "Reproducible RNA-seq analysis using recount2",
         author = personList(
             as.person("Leonardo Collado-Torres"),
@@ -16,3 +30,4 @@ bibentry(bibtype="article",
         doi = "10.1038/nbt.3838",
         url = "http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html"
     )
+)

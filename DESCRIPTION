@@ -1,7 +1,7 @@
 Package: recount.bwtool
 Title: Compute coverage matrices from recount quickly using bwtool
-Version: 0.99.20
-Date: 2017-08-10
+Version: 0.99.21
+Date: 2017-08-11
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"),
     email = "leo.collado@libd.org"))
 Depends:
@@ -21,12 +21,15 @@ Suggests:
     testthat
 SystemRequirements: bwtool
 Description: Compute coverage matrices from recount
-    https://jhubiostatistics.shinyapps.io/recount/ using bwtool.
+    https://jhubiostatistics.shinyapps.io/recount/ using bwtool
+    (https://github.com/CRG-Barcelona/bwtool).
     This makes it easy to explore regions beyond the genes and exons that are
     available in recount. For example, it can be used for
     annotation-agnostic differential expression analyses with the data from the
     recount project as described at
-    http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html.
+    http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html. This package
+    was used for computing expressed regions in the GTEx data as described in 
+    biorxiv.org/content/early/2017/06/03/145656.
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
