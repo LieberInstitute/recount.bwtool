@@ -81,7 +81,7 @@ coverage_bwtool <- function(bws, regions, strand = '*', pheno = NULL,
         pheno <- data.frame(bigwig_path = bws, bigwig_file = basename(bws),
             sample = names(bws))
     } else {
-        stopifnot(nrow(pheno) != length(bws))
+        stopifnot(nrow(pheno) == length(bws))
     }
     
     if(stranded_sumsdir) {
