@@ -46,9 +46,9 @@
 #' ## bwtool on travis
 #' if(FALSE) {
 #'     ## Works at JHPCE. Load the appropriate modules before opening R.
-#'     module load wiggletools/default
-#'     module load ucsctools
-#'     R
+#'     # module load wiggletools/default
+#'     # module load ucsctools
+#'     # R
 #'
 #'     library('recount')
 #'     library('recount.bwtool')
