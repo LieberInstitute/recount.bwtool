@@ -1,3 +1,14 @@
+CHANGES IN VERSION 0.99.23
+--------------------------
+
+NEW FEATURES
+
+    o Added the function compute_mean() which computes a mean BigWig file
+        given a set of BigWig files, the corresponding chromosome information
+        and area under coverage (AUC) for the BigWigs (can be calculated if
+        missing).
+
+
 CHANGES IN VERSION 0.99.19
 --------------------------
 
