@@ -1,3 +1,9 @@
+pkgVer <- function(pkg) {
+    if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
+    ver <- meta$Version
+    paste0('https://github.com/LieberInstitute/', pkg, ' - R package version ', ver)
+}
+
 c(
     bibentry(bibtype="article",
         title = "Improving the value of public RNA-seq expression data by phenotype prediction",
@@ -29,5 +35,14 @@ c(
         journal = "Nature Biotechnology",
         doi = "10.1038/nbt.3838",
         url = "http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html"
+    ),
+    bibentry(bibtype="manual",
+        title = "Compute coverage matrices from recount quickly using bwtool",
+        author = personList(
+            as.person("Leonardo Collado-Torres"),
+        ),
+        year = 2017,
+        url = "https://github.com/LieberInstitute/recount.bwtool",
+        note = pkgVer('recount.bwtool')
     )
 )
