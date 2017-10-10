@@ -72,7 +72,7 @@ A BibTeX entry for LaTeX users is
 }
 ```
 
-To cite __recount__ use:
+To cite __recount__ use `citation('recount')` in R and use:
 
 Collado-Torres L, Nellore A, Kammers K, Ellis SE, Taub MA, Hansen KD, Jaffe AE, Langmead B and Leek JT (2017). “Reproducible RNA-seq analysis using
 recount2.” _Nature Biotechnology_. doi: 10.1038/nbt.3838 (URL: http://doi.org/10.1038/nbt.3838), <URL:
