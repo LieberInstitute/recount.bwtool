@@ -81,7 +81,7 @@ then
     BED="${SUMSDIR}/recount.bwtool-${RIGHTNOW}.bed"
     echo "**** Creating ${BED} with the regions ****"
     mkdir -p ${SUMSDIR}
-    Rscript -e "library('rtracklayer'); library('GenomicRanges'); reg_load <- function(regpath) { regname <- load(regpath); get(regname) }; export(reg_load('${REGIONS}'), con = '${BED}', format='BED')"
+    Rscript -e "library('rtracklayer'); library('GenomicRanges'); reg_load <- function(regpath) { regname <- load(regpath); get(regname) }; gr <- reg_load('${REGIONS}'); strand(gr) <- '*'; export(gr, con = '${BED}', format='BED')"
 fi
 
 Rscript -e "writeLines(system.file('extdata', 'jhpce', package = 'recount.bwtool'), '.recount.bwtool')"

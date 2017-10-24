@@ -102,7 +102,10 @@ coverage_bwtool <- function(bws, regions, strand = '*', pheno = NULL,
     
     if(!file.exists(bed) || overwrite) {
         if (verbose) message(paste(Sys.time(), 'creating the BED file', bed))
-        rtracklayer::export(regions, con = bed, format = 'BED')
+        tmpreg <- regions
+        strand(tmpreg) <- '*'
+        rtracklayer::export(tmpreg, con = bed, format = 'BED')
+        rm(tmpreg)
         stopifnot(file.exists(bed))
     }
     
