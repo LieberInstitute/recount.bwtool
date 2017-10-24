@@ -10,7 +10,7 @@ files_load <- function(f) {
 
 files_main <- function() {
     message(paste(Sys.time(), 'locating files'))
-    rse_files <- dir(pattern = 'rse_', full.names = TRUE)
+    rse_files <- dir(pattern = '^rse_', full.names = TRUE)
     
     ## Exclude GTEx and TCGA if present
     if(any(grepl('TCGA', rse_files))) {
