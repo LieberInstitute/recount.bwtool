@@ -13,10 +13,10 @@ c(
             as.person("Andrew E. Jaffe"),
             as.person("Jeffrey T. Leek")
         ),
-        year = 2017,
-        journal = "bioRxiv",
-        doi = "10.1101/145656",
-        url = "http://www.biorxiv.org/content/early/2017/06/03/145656"
+        year = 2018,
+        journal = "Nucl. Acids Res.",
+        doi = "10.1093/nar/gky102",
+        url = "https://doi.org/10.1093/nar/gky102"
     ),
     bibentry(bibtype="article",
         title = "Reproducible RNA-seq analysis using recount2",
