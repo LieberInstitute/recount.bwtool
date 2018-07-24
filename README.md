@@ -9,15 +9,15 @@ For more information about `recount.bwtool` check the help page for the `coverag
 
 # Installation instructions
 
-Get R 3.3.x from [CRAN](http://cran.r-project.org/). Also install [bwtool](https://github.com/CRG-Barcelona/bwtool/wiki). Check it's [installation instructions](https://github.com/CRG-Barcelona/bwtool/wiki#installation).
+Get R 3.5.x from [CRAN](http://cran.r-project.org/). Also install [bwtool](https://github.com/CRG-Barcelona/bwtool/wiki). Check it's [installation instructions](https://github.com/CRG-Barcelona/bwtool/wiki#installation).
 
 ```R
 ## Install the dependencies from Bioconductor
-source('http://bioconductor.org/biocLite.R')
-biocLite(c('recount'))
+install.packages("BiocManager")
+BiocManager::install(c('recount'))
 
 ## Then install recount.bwtool
-biocLite('LieberInstitute/recount.bwtool')
+BiocManager::install('LieberInstitute/recount.bwtool')
 ```
 
 ## Install `bwtool` on SciServer
