@@ -3,7 +3,7 @@ stopifnot(packageVersion('recount.bwtool') >= '0.99.15')
 library('recount.bwtool')
 library('recount')
 library('BiocParallel')
-library('devtools')
+library('sessioninfo')
 library('getopt')
 
 ## Specify parameters

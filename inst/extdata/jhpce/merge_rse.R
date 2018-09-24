@@ -1,6 +1,6 @@
 library('SummarizedExperiment')
 library('Hmisc')
-library('devtools')
+library('sessioninfo')
 
 files_load <- function(f) {
     message(paste(Sys.time(), 'loading file', f))
