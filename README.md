@@ -56,8 +56,8 @@ Below is the citation output from using `citation('recount.bwtool')` in R. Pleas
 
 To cite the __recount.bwtool__ package in publications use:
 
-Ellis SE, Collado-Torres L, Jaffe AE and Leek JT (2017). “Improving the value of public RNA-seq expression data by phenotype prediction.” _bioRxiv_. doi:
-10.1101/145656 (URL: http://doi.org/10.1101/145656), <URL: http://www.biorxiv.org/content/early/2017/06/03/145656>.
+Ellis SE, Collado-Torres L, Jaffe AE, Leek JT (2018). “Improving the value of public RNA-seq expression data by phenotype prediction.”
+_Nucl. Acids Res._. doi: 10.1093/nar/gky102 (URL: http://doi.org/10.1093/nar/gky102), <URL: https://doi.org/10.1093/nar/gky102>.
 
 A BibTeX entry for LaTeX users is
 
@@ -65,10 +65,10 @@ A BibTeX entry for LaTeX users is
 @Article{,
     title = {Improving the value of public RNA-seq expression data by phenotype prediction},
     author = {Shannon E. Ellis and Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
-    year = {2017},
-    journal = {bioRxiv},
-    doi = {10.1101/145656},
-    url = {http://www.biorxiv.org/content/early/2017/06/03/145656},
+    year = {2018},
+    journal = {Nucl. Acids Res.},
+    doi = {10.1093/nar/gky102},
+    url = {https://doi.org/10.1093/nar/gky102},
 }
 ```
 

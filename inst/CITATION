@@ -39,7 +39,7 @@ c(
     bibentry(bibtype="manual",
         title = "Compute coverage matrices from recount quickly using bwtool",
         author = personList(
-            as.person("Leonardo Collado-Torres"),
+            as.person("Leonardo Collado-Torres")
         ),
         year = 2017,
         url = "https://github.com/LieberInstitute/recount.bwtool",
