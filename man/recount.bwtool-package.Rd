@@ -14,6 +14,6 @@ recount project as described at
 \url{http://biorxiv.org/content/early/2016/08/08/068478}.
 }
 \author{
-Leonardo Collado-Torres <leo.collado@libd.org>
+Leonardo Collado-Torres <lcolladotor@gmail.com>
 }
 \keyword{package}
