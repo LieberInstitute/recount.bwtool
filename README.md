@@ -2,6 +2,7 @@ Status: Travis CI [![Build Status](https://travis-ci.org/LieberInstitute/recount
 
 recount.bwtool
 ==============
+[![DOI](https://zenodo.org/badge/81982945.svg)](https://zenodo.org/badge/latestdoi/81982945)
 
 Compute coverage matrices from [recount](https://jhubiostatistics.shinyapps.io/recount/) using [bwtool](https://github.com/CRG-Barcelona/bwtool). This makes it easy to explore regions beyond the genes and exons that are available in recount. For example, it can be used for annotation-agnostic differential expression analyses with the data from the recount project as described in the [paper](http://www.nature.com/nbt/journal/v35/n4/full/nbt.3838.html). This package was used for computing expressed regions in the GTEx data as described in this [pre-print](biorxiv.org/content/early/2017/06/03/145656).
 
