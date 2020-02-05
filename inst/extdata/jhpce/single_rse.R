@@ -49,7 +49,7 @@ dir.create(opt$sumsdir, recursive = TRUE, showWarnings = FALSE)
 if(opt$cores == 1) {
     bp <- SerialParam()
 } else {
-    bp <- MulticoreParam(cores = opt$cores, outfile = Sys.getenv('SGE_STDERR_PATH'))
+    bp <- MulticoreParam(cores = opt$cores)
 }
 
 if(FALSE) {
