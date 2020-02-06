@@ -112,7 +112,7 @@ coverage_matrix_bwtool <- function(project, regions,
     if(is.null(url_table)) {
         url_table <- recount::recount_url
     } else {
-        stopifnot(all(colnames(recount::recount_url) %in% colnames(url_table)))
+        stopifnot(all(c('path', 'file_name', 'project', 'url') %in% colnames(url_table)))
     }
     
     ## Subset url data
